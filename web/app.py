@@ -1,19 +1,27 @@
 from flask import Flask, request
 import pandas as pd
 import pickle
+#from flask_cors import CORS
+
+
+
 
 #------- GLOBAL VARIABLE -----R---
 estimation = '0'  # output of the ML model
 counter = 0       # counter for the ith record
 
 
-input_to_model = pd.DataFrame({"STUDBME1":[0],"STUDBME2":[0],"CMP_LAB1":[0],"CMP_LAB2":[0],"CMP_LAB3":[0],"CMP_LAB4":[0]}, dtype=int)
+# 	El-lab	El-modarag	Redmi	youssef	hamdy	Farouk	Ramadan	target
+
+input_to_model = pd.DataFrame({"El-lab":[0],"El-modarag":[0],"Redmi":[0],"youssef":[0],"Farouk":[0]}, dtype=int)
 
 
-model = pickle.load(open('../saved_models/randomForest_84all.sav', 'rb'))
+model = pickle.load(open('random-forest82gini.sav', 'rb'))
 
 
 app = Flask(__name__)
+
+#CORS(app)
 
 @app.route('/')
 def home():
@@ -26,15 +34,14 @@ s2 = 0
 s3 = 0
 s4 = 0
 s5 = 0
-s6 = 0
 
 @app.route('/api/send-data')
 def receive():
-    global estimation, input_to_model, counter, aggragate, s1, s2, s3, s4, s5, s6
+    global estimation, input_to_model, counter, aggragate, s1, s2, s3, s4, s5
     
     if counter == 5:
         # get the average of each data element
-        input_to_model.iloc[0] = [s1/counter,s2/counter,s3/counter,s4/counter,s5/counter,s6/counter]
+        input_to_model.iloc[0] = [s1/counter,s2/counter,s3/counter,s4/counter,s5/counter]
         estimation = model.predict(input_to_model)[0]
         counter = 0 # reset the counter
         
@@ -44,7 +51,6 @@ def receive():
         s3 = 0
         s4 = 0
         s5 = 0
-        s6 = 0
         
         return "<h2> Model estimation was updated </h2>"
         
@@ -58,8 +64,6 @@ def receive():
     print("s4= ", s4)
     s5 += int(request.args.get('ap5'))
     print("s5= ", s5)
-    s6 += int(request.args.get('ap6'))
-    print("s6= ", s6)
     
     counter +=1
         
