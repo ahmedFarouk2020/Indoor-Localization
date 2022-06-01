@@ -16,7 +16,7 @@ counter = 0       # counter for the ith record
 input_to_model = pd.DataFrame({"El-lab":[0],"El-modarag":[0],"Redmi":[0],"youssef":[0],"Farouk":[0]}, dtype=int)
 
 
-model = pickle.load(open('random-forest82gini.sav', 'rb'))
+model = pickle.load(open('saved_models/random-forest82gini.sav', 'rb'))
 
 
 app = Flask(__name__)
