@@ -24,3 +24,6 @@ Tracking a object within a building
     ``` pip install -r requirements.txt ```
 3. Collect data about surrounding routers signal strength ``` See file in ready-to-model dir ```
 4. Use this data to train the AI model and save it
+
+# The App
+<img to the app>
