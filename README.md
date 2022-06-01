@@ -14,16 +14,25 @@ Tracking a object within a building
 
 # How to get started
 1. Create Virtual Env (optional)
-    ``` python -m venv <environment-name> ```
+    ```cmd
+    python -m venv <environment-name>
+    ```
 2. Activate the Venv
     * Bash 
-    ``` source virtualenv_name/Scripts/activate ```
+    ```Bash
+    source virtualenv_name/Scripts/activate 
+    ```
     * Powershell 
-    ``` ./virtualenv_name/Scripts/activate ```
-2. Install Requirements.txt packages
-    ``` pip install -r requirements.txt ```
-3. Collect data about surrounding routers signal strength ``` See file in ready-to-model dir ```
-4. Use this data to train the AI model and save it
+    ```Powershell
+    ./virtualenv_name/Scripts/activate 
+    ```
+3. Install Requirements.txt packages
+    ``` 
+    pip install -r requirements.txt 
+    ```
+4. Collect data about surrounding routers signal strength 
+    ``` See files in ready-to-model dir ```
+5. Use this data to train the AI model and save it
 
 # The App
 <img to the app>
